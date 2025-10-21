@@ -15,8 +15,10 @@ import java.util.Set;
 @Setter
 public class Bovino {
 
+
+
     @Id
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String codigo;
 
     private LocalDateTime dataNascimento;

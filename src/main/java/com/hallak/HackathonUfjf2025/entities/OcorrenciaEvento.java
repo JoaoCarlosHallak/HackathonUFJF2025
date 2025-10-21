@@ -11,17 +11,17 @@ public class OcorrenciaEvento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "dataocorrencia")
     private LocalDateTime dataOcorrencia;
 
-    @Column(nullable = false)
+    @Column
     private String descricao;
 
     @Column(nullable = false)
     private DTipoEvento tipo_evento;
 
     @ManyToOne
-    @JoinColumn(name = "bovino_id", nullable = false)
+    @JoinColumn(name = "codigo_bovino", referencedColumnName = "codigo", nullable = false)
     private Bovino bovino;
 
 
