@@ -11,6 +11,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AssociacaoBovinoId implements Serializable {
-    private int ascendenteId;
-    private int bovinoId;
+    private String ascendenteId;
+    private String bovinoId;
 }

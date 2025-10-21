@@ -13,7 +13,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class Bovino {
 
     @Id
@@ -28,8 +27,11 @@ public class Bovino {
     @Column(nullable = false)
     private String paisOrigem;
 
-    @Column(nullable = false)
-    private int raca;
+    @Column(nullable = false, name = "raca_id")
+    private String raca;
+
+    @Column
+    private String sexo;
 
     @OneToMany(mappedBy = "bovino", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OcorrenciaEvento> eventos;
