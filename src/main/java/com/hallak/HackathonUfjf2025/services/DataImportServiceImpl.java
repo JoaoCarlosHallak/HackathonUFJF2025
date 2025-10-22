@@ -151,7 +151,7 @@ public class DataImportServiceImpl {
 
 
     @Transactional
-    public void importarFichasLactacao(InputStream inputStream) throws Exception { 
+    public void importarFichasLactacao(InputStream inputStream) throws Exception {
 
         Map<String, Bovino> cacheBovinos = new HashMap<>();
         bovinoRepository.findAll().forEach(b -> cacheBovinos.put(b.getCodigo(), b));
