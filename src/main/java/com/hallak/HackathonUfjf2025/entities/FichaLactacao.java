@@ -1,9 +1,6 @@
 package com.hallak.HackathonUfjf2025.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,42 +11,48 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
+@Entity
+@NoArgsConstructor
 public class FichaLactacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private final int id;
+    private Long id;
 
     @Column(nullable = false)
-    private LocalDateTime data;
+    private LocalDateTime dataEncerramento;
 
-    @Column(nullable = false)
+    @Column
     private String formaColeta;
 
     @Column(nullable = false)
     private int idadeMesesParto;
 
-    @Column(nullable = false)
-    private int idAnimal;
+    @ManyToOne
+    @JoinColumn(name = "codigo_bovino", referencedColumnName = "codigo", nullable = false)
+    private Bovino bovino;
+
+
+    @JoinColumn(name = "idEventoParto")
+    private Long idEventoParto;
+
+    @JoinColumn(name = "idEventoSeca")
+    private Long idEventoSeca;
 
     @Column(nullable = false)
-    private int idEventoParto;
-
-    @Column(nullable = false)
-    private int idEventoSeca;
-
-    @Column(nullable = false)
-    private int numeroOrdenhas;
+    private Integer numeroOrdenhas;
 
     @Column(nullable = false)
     private Double qtDeDiasLactacao;
 
     @Column(nullable = false)
-    private Double qtDeDeGordura305;
+    private Double qtDeGordura305;
 
     @Column(nullable = false)
     private Double qtDeLeite305;
 
     @Column(nullable = false)
     private Double qtDeProteina305;
+
+
 }

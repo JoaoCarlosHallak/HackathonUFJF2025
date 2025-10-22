@@ -6,20 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class MainServiceImpl implements MainService{
 
-    private final OllamaClientService geminiService;
+    private final SQLService sqlService;
+    private final OllamaClientService ollamaClientService;
 
     @Autowired
-    public MainServiceImpl(OllamaClientService geminiService) {
-        this.geminiService = geminiService;
+    public MainServiceImpl(SQLService sqlService, OllamaClientService ollamaClientService) {
+        this.sqlService = sqlService;
+        this.ollamaClientService = ollamaClientService;
     }
 
 
     @Override
     public ResponseObject newQuery(RequestObject requestObject) {
-        return new ResponseObject(LocalDateTime.now(), geminiService.newCall(requestObject.payload()));
+        List<Map<String, Object>> retorno = sqlService.retornoDaConsulta(requestObject.payload());
+        System.out.println(retorno);
+        return new ResponseObject(LocalDateTime.now(), ollamaClientService.arrumarRetorno(requestObject.payload(), retorno));
+
+
+
     }
 }

@@ -38,12 +38,16 @@ public class Bovino {
     @OneToMany(mappedBy = "bovino", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OcorrenciaEvento> eventos;
 
+    @OneToMany(mappedBy = "bovino", cascade = CascadeType.ALL, orphanRemoval = false)
+    private Set<FichaLactacao> lactacoes;
 
-    @OneToMany(mappedBy = "ascendente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<AssociacaoBovino> descendentes;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "numerorgpai", referencedColumnName = "codigo")
+    private Bovino numeroRgPai;
 
-    @OneToMany(mappedBy = "bovino", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<AssociacaoBovino> ascendentes;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "numerorgmae", referencedColumnName = "codigo")
+    private Bovino numeroRgMae;
 
 
 }
