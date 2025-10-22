@@ -25,7 +25,7 @@ public class MainServiceImpl implements MainService{
     @Override
     public ResponseObject newQuery(RequestObject requestObject) {
         List<Map<String, Object>> retorno = sqlService.retornoDaConsulta(requestObject.payload());
-        System.out.println(retorno);
+        System.out.println("RETORNO FOI: " + retorno);
         return new ResponseObject(LocalDateTime.now(), ollamaClientService.arrumarRetorno(requestObject.payload(), retorno));
 
 

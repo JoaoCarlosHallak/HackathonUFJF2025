@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/api")
 public class MainController {
 
 
@@ -25,6 +25,7 @@ public class MainController {
 
     @PostMapping
     public ResponseEntity<ResponseObject> newQuery(@RequestBody RequestObject requestObject){
+        System.out.println("Pergunta foi: " + requestObject.payload());
         return new ResponseEntity<>(mainService.newQuery(requestObject), HttpStatus.OK);
     }
 
